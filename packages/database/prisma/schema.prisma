@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ------------------------------------------------------
+// CityZen Spatial Experience Sandbox Schema
+// ------------------------------------------------------
+
+enum DeviceType {
+  KIOSK
+  MONITOR
+  IFPD
+}
+
+enum DeviceStatus {
+  ONLINE
+  OFFLINE
+  MAINTENANCE
+}
+
+model Device {
+  id          String       @id @default(uuid())
+  type        DeviceType
+  name        String
+  locationLng Float
+  locationLat Float
+  zoneId      String
+  zone        Zone         @relation(fields: [zoneId], references: [id])
+  status      DeviceStatus @default(ONLINE)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  AnalyticsEvent AnalyticsEvent[]
+}
+
+enum CrowdLevel {
+  LOW
+  MEDIUM
+  BUSY
+}
+
+model Zone {
+  id          String     @id @default(uuid())
+  name        String
+  description String?
+  crowdLevel  CrowdLevel @default(LOW)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  devices Device[]
+}
+
+enum IncidentType {
+  MAINTENANCE
+  MEDICAL
+  CROWD
+  WEATHER
+}
+
+enum IncidentStatus {
+  ACTIVE
+  RESOLVED
+}
+
+model Incident {
+  id          String         @id @default(uuid())
+  type        IncidentType
+  description String
+  locationLng Float
+  locationLat Float
+  status      IncidentStatus @default(ACTIVE)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(uuid())
+  eventType String // e.g. "QR_SCAN", "ROUTE_ENGAGEMENT"
+  deviceId  String?
+  device    Device?  @relation(fields: [deviceId], references: [id])
+  timestamp DateTime @default(now())
+  metadata  Json? // Optional JSON for additional context
+}
