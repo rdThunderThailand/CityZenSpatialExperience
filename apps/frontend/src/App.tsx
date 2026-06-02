@@ -3,6 +3,7 @@ import KioskView from './features/kiosk';
 import MonitorView from './features/monitor';
 import ControlRoomView from './features/control';
 import MobileView from './features/mobile';
+import { AdminRoute } from './components/AdminRoute';
 
 function App() {
   return (
@@ -14,14 +15,21 @@ function App() {
         {/* Monitor Experience */}
         <Route path="/monitor/:id" element={<MonitorView />} />
         
-        {/* Control Room Experience */}
-        <Route path="/control-room" element={<ControlRoomView />} />
+        {/* Control Room Experience - Protected */}
+        <Route 
+          path="/control-room" 
+          element={
+            <AdminRoute>
+              <ControlRoomView />
+            </AdminRoute>
+          } 
+        />
         
         {/* Mobile Web / PWA Experience */}
         <Route path="/mobile/:zoneId" element={<MobileView />} />
         
         {/* Fallback routing */}
-        <Route path="/" element={<Navigate to="/control-room" replace />} />
+        <Route path="/" element={<Navigate to="/kiosk/default" replace />} />
       </Routes>
     </BrowserRouter>
   );

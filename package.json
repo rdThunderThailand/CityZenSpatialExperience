@@ -10,6 +10,7 @@
     "lint": "pnpm -r lint"
   },
   "devDependencies": {
+    "puppeteer": "^25.1.0",
     "typescript": "~6.0.2"
   }
 }

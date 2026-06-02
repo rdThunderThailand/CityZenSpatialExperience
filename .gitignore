@@ -26,3 +26,6 @@ dist-ssr
 /src/generated/prisma
 .env
 .env.*
+apps/frontend/public/models/
+apps/frontend/public/images/
+.antigravitycli/
