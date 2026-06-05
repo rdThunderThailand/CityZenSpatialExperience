@@ -3,9 +3,14 @@ import KioskView from './features/kiosk';
 import MonitorView from './features/monitor';
 import ControlRoomView from './features/control';
 import MobileView from './features/mobile';
+import LandingView from './features/landing';
 import { AdminRoute } from './components/AdminRoute';
 
 export const router = createBrowserRouter([
+  {
+    path: '/landing',
+    element: <LandingView />,
+  },
   {
     path: '/kiosk/:id',
     element: <KioskView />,
