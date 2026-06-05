@@ -125,16 +125,16 @@ export default function KioskView() {
         </div>
 
         {/* MAP CONTAINER */}
-        <div className="px-10 py-2 h-[45vh] flex-shrink-0 relative z-10">
+        <div className="px-10 py-2 flex-1 relative z-10 min-h-0">
           <div className="w-full h-full rounded-3xl overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] border-4 border-white/50 relative bg-[#050b14]">
             <SmartCityImageMap kioskId={id} />
           </div>
         </div>
 
         {/* MAIN CONTENT BOTTOM HALF */}
-        <div className="flex-1 px-10 py-4 flex flex-col gap-4 relative z-10 overflow-hidden">
+        <div className="px-10 py-2 flex flex-col gap-4 relative z-10 shrink-0">
           {/* TOP ROW: HIGHLIGHTS */}
-          <div className="bg-[#14361e]/40 backdrop-blur-3xl rounded-3xl p-4 shadow-xl border border-white/20 flex-1 flex flex-col min-h-0">
+          <div className="bg-[#14361e]/40 backdrop-blur-3xl rounded-3xl p-4 shadow-xl border border-white/20 flex flex-col shrink-0">
             <div className="mb-2">
               <h3 className="text-white font-bold text-lg leading-none flex items-center gap-2">
                 <span className="text-yellow-400 text-xl">⭐</span> TODAY'S HIGHLIGHTS
@@ -142,9 +142,9 @@ export default function KioskView() {
               <p className="text-green-300 text-sm mt-1">ไฮไลต์ห้ามพลาดวันนี้</p>
             </div>
             
-            <div className="grid grid-cols-3 gap-4 flex-1">
+            <div className="grid grid-cols-3 gap-4">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="relative rounded-xl overflow-hidden group h-full animate-float-subtle" style={{ animationDelay: `${i * 0.5}s` }}>
+                <div key={i} className="relative rounded-xl overflow-hidden group aspect-[16/10] animate-float-subtle" style={{ animationDelay: `${i * 0.5}s` }}>
                   <img src="/images/thai_performance.png" alt="Performance" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" style={{ animationDelay: `${i}s` }} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                   <div className="absolute bottom-3 left-3 right-3">
@@ -160,7 +160,7 @@ export default function KioskView() {
           </div>
 
           {/* BOTTOM ROW: SPLIT CARDS */}
-          <div className="flex gap-4 flex-1 min-h-0">
+          <div className="flex gap-4 shrink-0">
             <div className="w-1/3 bg-white/30 backdrop-blur-3xl rounded-3xl p-5 shadow-xl border-2 border-white/40 flex flex-col justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-yellow-100 border-2 border-yellow-400 flex items-center justify-center">
@@ -187,7 +187,7 @@ export default function KioskView() {
                 <p className="text-xs text-gray-500">ไฮไลต์ห้ามพลาดวันนี้</p>
               </div>
               <div className="flex gap-4 items-center justify-center mt-2">
-                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-square bg-gray-200">
+                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-video bg-gray-200">
                   <video 
                     ref={videoRef1}
                     src="/videos/nongnooch_landing.mp4" 
@@ -198,10 +198,10 @@ export default function KioskView() {
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent">
-                    <span className="text-white text-[10px] font-bold">Nongnooch Garden</span>
+                    <span className="text-white text-[10px] font-bold">Thai Cultural Performance</span>
                   </div>
                 </div>
-                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-square bg-gray-200">
+                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-video bg-gray-200">
                   <video 
                     ref={videoRef2}
                     src="https://videos.pexels.com/video-files/855029/855029-hd_1920_1080_30fps.mp4" 
@@ -212,7 +212,7 @@ export default function KioskView() {
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent">
-                    <span className="text-white text-[10px] font-bold">Cultural Experience</span>
+                    <span className="text-white text-[10px] font-bold">Dinosaur Valley</span>
                   </div>
                 </div>
               </div>
