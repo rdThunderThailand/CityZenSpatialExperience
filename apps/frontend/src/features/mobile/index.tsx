@@ -1,7 +1,15 @@
-import { useState } from 'react';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import { useState, useEffect, useRef } from 'react';
+import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { Search, MapPin, Heart, ChevronLeft, Info, Camera, Clock, X, CarFront, Coffee, Droplets } from 'lucide-react';
 import { cn } from '../../lib/utils';
+
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN || 'pk.eyJ1IjoibW9jay11c2VyIiwiYSI6ImNtbW9jay10b2tlbiJ9.mock';
+
+const NONGNOOCH_BOUNDS: [mapboxgl.LngLatLike, mapboxgl.LngLatLike] = [
+  [100.9150, 12.7550], // SW coordinates
+  [100.9400, 12.7750]  // NE coordinates
+];
 
 const PLACES = [
   {
@@ -13,10 +21,10 @@ const PLACES = [
     distance: '650 m',
     highlight: 'A world of dinosaurs! Life-sized statues and educational exhibits.',
     gallery: ['/images/dinosaur_valley.png', '/images/thai_performance.png', '/images/dinosaur_valley.png'],
-    top: '40%',
-    left: '60%',
+    lngLat: [100.9284, 12.7683] as [number, number],
     icon: <Camera size={20} />,
-    color: 'bg-orange-500'
+    color: 'bg-orange-500',
+    markerColor: 'border-t-orange-500'
   },
   {
     id: 'thai-performance',
@@ -27,10 +35,10 @@ const PLACES = [
     distance: '400 m',
     highlight: 'Experience authentic Thai culture and traditional dances.',
     gallery: ['/images/thai_performance.png'],
-    top: '60%',
-    left: '40%',
+    lngLat: [100.9314, 12.7643] as [number, number],
     icon: <span className="text-xl">🎭</span>,
-    color: 'bg-purple-500'
+    color: 'bg-purple-500',
+    markerColor: 'border-t-purple-500'
   },
   {
     id: 'convention',
@@ -41,10 +49,10 @@ const PLACES = [
     distance: '100 m',
     highlight: 'Main event hall and gathering point.',
     gallery: [],
-    top: '45%',
-    left: '35%',
+    lngLat: [100.9324, 12.7653] as [number, number],
     icon: <Info size={20} />,
-    color: 'bg-blue-500'
+    color: 'bg-blue-500',
+    markerColor: 'border-t-blue-500'
   }
 ];
 
@@ -52,6 +60,10 @@ export default function MobileView() {
   const [selectedPlace, setSelectedPlace] = useState<any>(null);
   const [viewMode, setViewMode] = useState<'explore' | 'detail' | 'about'>('explore');
   const [activeCategory, setActiveCategory] = useState('All');
+  
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<mapboxgl.Map | null>(null);
+  const markersRef = useRef<{ [key: string]: mapboxgl.Marker }>({});
 
   const categories = [
     { name: 'All', icon: <MapPin size={24} /> },
@@ -74,6 +86,56 @@ export default function MobileView() {
     setViewMode('explore');
   };
 
+  useEffect(() => {
+    if (!mapContainerRef.current || mapRef.current) return;
+
+    mapRef.current = new mapboxgl.Map({
+      container: mapContainerRef.current,
+      style: 'mapbox://styles/mapbox/satellite-streets-v12',
+      center: [100.9304, 12.7663],
+      zoom: 16.5,
+      pitch: 45,
+      maxBounds: NONGNOOCH_BOUNDS, // Restrict to Nongnooch interior
+    });
+
+    return () => {
+      mapRef.current?.remove();
+      mapRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    // Clear old markers
+    Object.values(markersRef.current).forEach(m => m.remove());
+    markersRef.current = {};
+
+    PLACES.forEach(place => {
+      if (activeCategory !== 'All' && place.category !== activeCategory && activeCategory !== 'Attractions') return;
+
+      const el = document.createElement('div');
+      el.className = 'cursor-pointer transform hover:scale-105 transition-transform flex flex-col items-center justify-center translate-y-[-20px]';
+      el.innerHTML = `
+        <div class="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg border border-white/50 mb-1">
+          <span class="text-sm font-bold text-gray-800 whitespace-nowrap">${place.name}</span>
+        </div>
+        <div class="w-0 h-0 border-l-[8px] border-r-[8px] border-t-[12px] border-l-transparent border-r-transparent ${place.markerColor}"></div>
+      `;
+      
+      el.addEventListener('click', () => {
+        handlePinClick(place);
+        mapRef.current?.flyTo({ center: place.lngLat, zoom: 17.5, pitch: 60 });
+      });
+
+      const marker = new mapboxgl.Marker({ element: el })
+        .setLngLat(place.lngLat)
+        .addTo(mapRef.current!);
+      
+      markersRef.current[place.id] = marker;
+    });
+  }, [activeCategory]);
+
   return (
     <div className="w-full h-[100dvh] flex flex-col bg-[#e8f1e6] relative overflow-hidden font-sans">
       
@@ -92,57 +154,7 @@ export default function MobileView() {
       </div>
 
       {/* Map Layer */}
-      <div className="absolute inset-0 z-0">
-        <TransformWrapper
-          initialScale={1}
-          minScale={0.5}
-          maxScale={4}
-          limitToBounds={true}
-        >
-          <TransformComponent wrapperClass="w-full h-full" contentClass="w-full h-full">
-            <div className="relative w-[150vw] h-[150vh] sm:w-[100vw] sm:h-[100vh]">
-              <img src="/images/map_image.png" alt="Map" className="absolute inset-0 w-full h-full object-cover" />
-              
-              {/* Pins */}
-              {PLACES.map(place => {
-                if (activeCategory !== 'All' && place.category !== activeCategory && activeCategory !== 'Attractions') return null;
-                const isSelected = selectedPlace?.id === place.id;
-                
-                return (
-                  <button
-                    key={place.id}
-                    onClick={() => handlePinClick(place)}
-                    className={cn(
-                      "absolute z-10 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300",
-                      isSelected ? "scale-125 z-20" : "scale-100"
-                    )}
-                    style={{ top: place.top, left: place.left }}
-                  >
-                    <div className="relative flex flex-col items-center">
-                      <div className={cn(
-                        "w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg border-2",
-                        place.color,
-                        isSelected ? "border-yellow-400 animate-bounce" : "border-white"
-                      )}>
-                        {place.icon}
-                      </div>
-                      <div className="w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-white -mt-1"></div>
-                    </div>
-                  </button>
-                )
-              })}
-
-              {/* You Are Here */}
-              <div className="absolute top-[55%] left-[45%] z-10 transform -translate-x-1/2 -translate-y-1/2">
-                <div className="w-6 h-6 bg-blue-500 rounded-full border-4 border-white shadow-lg shadow-blue-500/50 flex items-center justify-center">
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                </div>
-              </div>
-
-            </div>
-          </TransformComponent>
-        </TransformWrapper>
-      </div>
+      <div ref={mapContainerRef} className="absolute inset-0 z-0" />
 
       {/* Floating Action Buttons */}
       <div className="absolute top-28 right-4 flex flex-col gap-3 z-10">
