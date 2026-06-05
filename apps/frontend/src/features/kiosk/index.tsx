@@ -82,7 +82,7 @@ export default function KioskView() {
       ========================================= */}
       <div 
         className="landscape:hidden portrait:flex relative w-screen h-screen overflow-hidden flex-col bg-[#e8f1e6] font-sans pb-48"
-        style={{ backgroundImage: "url('/images/bg_nongnuch_vertical.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+        style={{ backgroundImage: "url('/images/bg_nongnuch_vertical.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
         {/* HEADER */}
         <header className="flex justify-between items-center px-10 pt-6 pb-2">
@@ -248,7 +248,7 @@ export default function KioskView() {
       ========================================= */}
       <div 
         className="portrait:hidden landscape:flex relative w-screen h-screen overflow-hidden flex-col bg-[#e8f1e6] font-sans pb-10"
-        style={{ backgroundImage: "url('/images/bg_nongnuch_horizon.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+        style={{ backgroundImage: "url('/images/bg_nongnuch_horizon.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
         
         {/* HEADER ROW */}
@@ -387,31 +387,16 @@ export default function KioskView() {
                 <h4 className="font-bold text-gray-900 tracking-wider text-lg">EXPLORE & GET INSPIRED</h4>
                 <p className="text-sm text-gray-500">ชมวิดีโอแนะนำสถานที่ท่องเที่ยว</p>
               </div>
-              <div className="flex gap-4 items-center justify-center mt-2">
-                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-square bg-gray-200">
-                  <video 
-                    ref={videoRef3}
-                    src="/videos/nongnooch_landing.mp4" 
-                    autoPlay 
-                    loop 
-                    muted={true}
-                    playsInline 
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent">
-                    <span className="text-white text-[10px] font-bold">Nongnooch Garden</span>
-                  </div>
-                </div>
-                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-video bg-gray-200 group">
-                  <img 
-                    src="/images/thai_performance.png" 
-                    alt="Thai Cultural Performance" 
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent">
-                    <span className="text-white text-[10px] font-bold">Dinosaur Valley</span>
-                  </div>
-                </div>
+              <div className="flex-1 relative rounded-2xl overflow-hidden shadow-md mt-2">
+                <video 
+                  ref={videoRef3}
+                  src="/videos/nongnooch_landing.mp4" 
+                  autoPlay 
+                  loop 
+                  muted={true}
+                  playsInline 
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>

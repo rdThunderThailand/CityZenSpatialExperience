@@ -39,7 +39,7 @@ export function SmartCityImageMap({ className, kioskId }: { className?: string, 
     <div className={cn("relative w-full h-full overflow-hidden bg-[#c3d1c5]", className)}>
       {/* Background Image without animation so pins stay aligned */}
       <img
-        src="/images/map_image.png"
+        src="/images/map_image.jpg"
         alt="Nongnooch Wonder World Map"
         className="absolute inset-0 w-full h-full object-cover"
       />
