@@ -1,11 +1,26 @@
 import { SmartCityImageMap } from '../../components/map/SmartCityImageMap';
 import { CloudSun, MapPin, Map, Smartphone, Sun, Cloud, CloudRain, CloudLightning } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default function KioskView() {
   const { id } = useParams();
+  const videoRef1 = useRef<HTMLVideoElement>(null);
+  const videoRef2 = useRef<HTMLVideoElement>(null);
   const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    // Attempt to force play videos if autoplay is blocked by browser policies
+    const playVideo = (ref: React.RefObject<HTMLVideoElement>) => {
+      if (ref.current) {
+        ref.current.defaultMuted = true;
+        ref.current.muted = true;
+        ref.current.play().catch(e => console.log('Video play failed:', e));
+      }
+    };
+    playVideo(videoRef1);
+    playVideo(videoRef2);
+  }, []);
   const [weather, setWeather] = useState({ temp: 32, desc: 'Partly Cloudy', icon: 'cloud-sun' });
 
   useEffect(() => {
@@ -156,10 +171,11 @@ export default function KioskView() {
               </div>
               <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm">
                 <video 
+                  ref={videoRef1}
                   src="https://www.nongnooch.world/assets/video-landing-CeXBl_Vg.mp4" 
                   autoPlay 
                   loop 
-                  muted 
+                  muted={true}
                   playsInline 
                   className="absolute inset-0 w-full h-full object-cover"
                 />
@@ -345,10 +361,11 @@ export default function KioskView() {
               </div>
               <div className="flex-1 relative rounded-2xl overflow-hidden shadow-md">
                 <video 
+                  ref={videoRef2}
                   src="https://www.nongnooch.world/assets/video-landing-CeXBl_Vg.mp4" 
                   autoPlay 
                   loop 
-                  muted 
+                  muted={true}
                   playsInline 
                   className="absolute inset-0 w-full h-full object-cover"
                 />
