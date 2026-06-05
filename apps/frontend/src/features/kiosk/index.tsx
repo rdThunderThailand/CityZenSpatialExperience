@@ -190,7 +190,7 @@ export default function KioskView() {
                 <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-square bg-gray-200">
                   <video 
                     ref={videoRef1}
-                    src="https://www.nongnooch.world/assets/video-landing-CeXBl_Vg.mp4" 
+                    src="/videos/nongnooch_landing.mp4" 
                     autoPlay 
                     loop 
                     muted={true}
@@ -399,7 +399,7 @@ export default function KioskView() {
                 <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-square bg-gray-200">
                   <video 
                     ref={videoRef3}
-                    src="https://www.nongnooch.world/assets/video-landing-CeXBl_Vg.mp4" 
+                    src="/videos/nongnooch_landing.mp4" 
                     autoPlay 
                     loop 
                     muted={true}
