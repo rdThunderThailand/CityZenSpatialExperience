@@ -45,25 +45,7 @@ export default function KioskView() {
     return <CloudSun className="text-orange-400" size={32} />;
   };
 
-  const BottomBar = () => (
-    <div className="absolute bottom-0 left-0 right-0 bg-[#0a1e10] py-3 px-12 flex justify-between items-center text-white text-sm font-sans z-30 border-t border-[#1a4225]">
-      <div className="font-bold tracking-wider">TH / EN</div>
-      <div className="h-5 w-[1px] bg-white/30"></div>
-      <div className="font-medium tracking-wide">https://www.nongnooch.world/landing</div>
-      <div className="h-5 w-[1px] bg-white/30"></div>
-      <div className="flex gap-4">
-        <div className="w-6 h-6 bg-[#3b5998] rounded flex items-center justify-center shadow-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-        </div>
-        <div className="w-6 h-6 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 rounded flex items-center justify-center shadow-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-        </div>
-        <div className="w-6 h-6 bg-[#00B900] rounded flex items-center justify-center shadow-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-        </div>
-      </div>
-    </div>
-  );
+
 
   return (
     <>
@@ -87,7 +69,7 @@ export default function KioskView() {
             </div>
           </div>
           
-          <div className="bg-white/80 backdrop-blur-md rounded-2xl px-6 py-2 flex gap-6 shadow-sm border border-white">
+          <div className="bg-white/40 backdrop-blur-3xl rounded-2xl px-6 py-2 flex gap-6 shadow-sm border border-white/40">
             <div className="flex flex-col justify-center text-right">
               <div className="text-xl font-bold text-gray-800 leading-none">{time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
               <div className="text-xs text-gray-500 font-medium mt-1">{time.toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'})}</div>
@@ -120,7 +102,7 @@ export default function KioskView() {
         {/* MAIN CONTENT BOTTOM HALF */}
         <div className="flex-1 px-10 py-4 flex flex-col gap-4 relative z-10 overflow-hidden">
           {/* TOP ROW: HIGHLIGHTS */}
-          <div className="bg-[#14361e]/70 backdrop-blur-xl rounded-3xl p-4 shadow-xl border border-white/10 flex-1 flex flex-col min-h-0">
+          <div className="bg-[#14361e]/40 backdrop-blur-3xl rounded-3xl p-4 shadow-xl border border-white/20 flex-1 flex flex-col min-h-0">
             <div className="mb-2">
               <h3 className="text-white font-bold text-lg leading-none flex items-center gap-2">
                 <span className="text-yellow-400 text-xl">⭐</span> TODAY'S HIGHLIGHTS
@@ -147,7 +129,7 @@ export default function KioskView() {
 
           {/* BOTTOM ROW: SPLIT CARDS */}
           <div className="flex gap-4 flex-1 min-h-0">
-            <div className="w-1/3 bg-white/60 backdrop-blur-xl rounded-3xl p-5 shadow-xl border-2 border-white/40 flex flex-col justify-between">
+            <div className="w-1/3 bg-white/30 backdrop-blur-3xl rounded-3xl p-5 shadow-xl border-2 border-white/40 flex flex-col justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-yellow-100 border-2 border-yellow-400 flex items-center justify-center">
                   <span className="text-xl">🚌</span>
@@ -167,7 +149,7 @@ export default function KioskView() {
               </div>
             </div>
 
-            <div className="flex-1 bg-white/60 backdrop-blur-xl rounded-3xl p-5 shadow-xl border-2 border-white/40 flex flex-col">
+            <div className="flex-1 bg-white/30 backdrop-blur-3xl rounded-3xl p-5 shadow-xl border-2 border-white/40 flex flex-col">
               <div className="mb-2">
                 <h4 className="font-bold text-gray-800 tracking-wide italic text-sm">EXPLORE & GET INSPIRED</h4>
                 <p className="text-xs text-gray-500">ไฮไลต์ห้ามพลาดวันนี้</p>
@@ -191,7 +173,7 @@ export default function KioskView() {
         </div>
 
         {/* FOOTER QR SECTION */}
-        <div className="absolute bottom-10 left-0 right-0 h-36 bg-gradient-to-r from-[#173822]/80 via-[#20492d]/80 to-[#122e1a]/80 backdrop-blur-xl flex items-center justify-between px-16 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] z-20 border-t border-white/20 rounded-t-3xl">
+        <div className="absolute bottom-10 left-0 right-0 h-36 bg-black/30 backdrop-blur-3xl flex items-center justify-between px-16 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] z-20 border-t border-white/20 rounded-t-3xl">
           <div className="flex flex-col gap-2 flex-1">
             <h2 className="text-3xl text-[#e8f1e6] font-serif tracking-widest text-center pr-10 mb-2">SCAN TO CONTINUE YOUR JOURNEY</h2>
             <div className="flex justify-center gap-12 pr-10">
@@ -219,7 +201,6 @@ export default function KioskView() {
           </div>
         </div>
         
-        <BottomBar />
       </div>
 
       {/* =========================================
@@ -250,7 +231,7 @@ export default function KioskView() {
           </div>
           
           <div className="w-[28%] flex justify-end">
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl px-6 py-3 flex gap-6 shadow-sm border border-white">
+            <div className="bg-white/40 backdrop-blur-3xl rounded-2xl px-6 py-3 flex gap-6 shadow-sm border border-white/40">
               <div className="flex flex-col justify-center text-right">
                 <div className="text-xl font-bold text-gray-800 leading-none">{time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
                 <div className="text-xs text-gray-500 font-medium mt-1">{time.toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'})}</div>
@@ -271,7 +252,7 @@ export default function KioskView() {
         <div className="flex-1 px-8 pb-4 flex gap-6 min-h-0">
           
           {/* LEFT COLUMN: HIGHLIGHTS */}
-          <div className="w-[25%] bg-[#14361e]/70 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-white/10 flex flex-col h-full">
+          <div className="w-[25%] bg-[#14361e]/40 backdrop-blur-3xl rounded-3xl p-5 shadow-xl border border-white/20 flex flex-col h-full">
             <div className="mb-4">
               <h3 className="text-white font-bold text-xl leading-none flex items-center gap-2 italic">
                 <span className="text-yellow-400 text-2xl">⭐</span> TODAY'S HIGHLIGHTS
@@ -302,7 +283,7 @@ export default function KioskView() {
               <SmartCityImageMap kioskId={id} />
             </div>
             
-            <div className="h-40 bg-gradient-to-r from-[#173822]/80 via-[#20492d]/80 to-[#122e1a]/80 backdrop-blur-xl rounded-3xl shadow-xl flex items-center justify-between pl-10 pr-4 py-4 border border-white/20 relative overflow-hidden flex-shrink-0">
+            <div className="h-40 bg-black/30 backdrop-blur-3xl rounded-3xl shadow-xl flex items-center justify-between pl-10 pr-4 py-4 border border-white/20 relative overflow-hidden flex-shrink-0">
               <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-green-500/20 blur-[100px] rounded-full pointer-events-none"></div>
               
               <div className="flex flex-col flex-1">
@@ -338,7 +319,7 @@ export default function KioskView() {
 
           {/* RIGHT COLUMN: SHUTTLE + INSPIRE */}
           <div className="w-[25%] flex flex-col gap-6">
-            <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-6 shadow-xl border-2 border-white/40 flex flex-col flex-1 relative overflow-hidden group">
+            <div className="bg-white/30 backdrop-blur-3xl rounded-3xl p-6 shadow-xl border-2 border-white/40 flex flex-col flex-1 relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100/50 z-0"></div>
               <div className="relative z-10 flex items-center gap-4 mb-6">
                 <div className="w-14 h-14 rounded-full bg-yellow-100 border-[3px] border-yellow-400 flex items-center justify-center shadow-inner">
@@ -361,7 +342,7 @@ export default function KioskView() {
               <img src="/images/shuttle_bus.png" className="absolute bottom-2 -right-4 w-40 object-contain drop-shadow-2xl z-10 animate-drive" alt="Shuttle" />
             </div>
 
-            <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-6 shadow-xl border-2 border-white/40 flex flex-col flex-1">
+            <div className="bg-white/30 backdrop-blur-3xl rounded-3xl p-6 shadow-xl border-2 border-white/40 flex flex-col flex-1">
               <div className="mb-4">
                 <h4 className="font-bold text-gray-900 tracking-wider text-lg">EXPLORE & GET INSPIRED</h4>
                 <p className="text-sm text-gray-500">ชมวิดีโอแนะนำสถานที่ท่องเที่ยว</p>
@@ -383,7 +364,6 @@ export default function KioskView() {
 
         </div>
 
-        <BottomBar />
       </div>
 
     </>
