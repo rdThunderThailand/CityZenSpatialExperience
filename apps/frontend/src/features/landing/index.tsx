@@ -53,8 +53,11 @@ export default function LandingView() {
       
       {/* MAP WITH PROPER ASPECT RATIO AND FADE */}
       <div 
-        className="absolute bottom-0 left-[50%] -translate-x-1/2 w-[220vw] sm:w-[150vw] aspect-[16/10] z-0 pointer-events-none"
-        style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%)', maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%)' }}
+        className="absolute bottom-[15vh] left-[50%] -translate-x-1/2 w-[220vw] sm:w-[150vw] aspect-[16/10] z-0 pointer-events-none"
+        style={{ 
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', 
+          maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' 
+        }}
       >
         <SmartCityImageMap kioskId="default" className="!bg-transparent" />
       </div>
