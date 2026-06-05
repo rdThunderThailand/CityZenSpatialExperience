@@ -95,8 +95,13 @@ export default function MobileView() {
       center: [100.9304, 12.7663],
       zoom: 16.5,
       pitch: 45,
-      maxBounds: NONGNOOCH_BOUNDS, // Restrict to Nongnooch interior
+      // Removed maxBounds temporarily to debug if it's causing the blank map
     });
+
+    // Force a resize after a short delay to ensure the container dimensions are fully computed
+    setTimeout(() => {
+      mapRef.current?.resize();
+    }, 100);
 
     return () => {
       mapRef.current?.remove();
