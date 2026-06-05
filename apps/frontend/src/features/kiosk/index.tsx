@@ -3,6 +3,54 @@ import { CloudSun, MapPin, Map, Smartphone, Sun, Cloud, CloudRain, CloudLightnin
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
+const SHOWTIMES = ["10:30 AM", "11:30 AM", "01:30 PM", "03:30 PM"];
+const SHOW_DURATION_MINS = 45;
+
+const ShowtimeDisplay = ({ currentTime }: { currentTime: Date }) => {
+  let nextFound = false;
+  
+  return (
+    <>
+      {SHOWTIMES.map((timeStr, index) => {
+        const [timePart, modifier] = timeStr.split(' ');
+        let [hours, minutes] = timePart.split(':').map(Number);
+        if (hours === 12) {
+          hours = modifier === 'AM' ? 0 : 12;
+        } else if (modifier === 'PM') {
+          hours += 12;
+        }
+        
+        const showTimeDate = new Date(currentTime);
+        showTimeDate.setHours(hours, minutes, 0, 0);
+        
+        const endTimeDate = new Date(showTimeDate.getTime() + SHOW_DURATION_MINS * 60000);
+        const nowMs = currentTime.getTime();
+        const startMs = showTimeDate.getTime();
+        const endMs = endTimeDate.getTime();
+        
+        let colorClass = "text-white"; // future
+        if (nowMs >= startMs && nowMs <= endMs) {
+          colorClass = "text-green-400 font-bold"; // current
+        } else if (nowMs > endMs) {
+          colorClass = "text-gray-500 opacity-60"; // passed
+        } else {
+          if (!nextFound) {
+            colorClass = "text-yellow-400 font-bold"; // next
+            nextFound = true;
+          }
+        }
+
+        return (
+          <span key={timeStr}>
+            <span className={colorClass}>{timeStr}</span>
+            {index < SHOWTIMES.length - 1 && <span className="text-gray-400 mx-1">|</span>}
+          </span>
+        );
+      })}
+    </>
+  );
+};
+
 export default function KioskView() {
   const { id } = useParams();
   const videoRef1 = useRef<HTMLVideoElement>(null);
@@ -147,7 +195,7 @@ export default function KioskView() {
                     <h4 className="text-white font-bold text-sm leading-tight">Thai Cultural Performance</h4>
                     <p className="text-gray-300 text-[10px] mb-1">Nong Nooch Tropical Garden</p>
                     <div className="flex gap-2 text-[9px] text-white/90 font-mono bg-black/50 rounded-full px-2 py-1 w-fit backdrop-blur-md">
-                      <span>10:30 AM | 11:30 AM | 01:30 PM | 03:30 PM</span>
+                      <ShowtimeDisplay currentTime={time} />
                     </div>
                   </div>
                 </div>
@@ -309,7 +357,7 @@ export default function KioskView() {
                     <h4 className="text-white font-bold text-sm leading-tight mb-0.5">Thai Cultural Performance</h4>
                     <p className="text-gray-300 text-[10px] mb-2">Nong Nooch Tropical Garden</p>
                     <div className="flex gap-2 text-[9px] text-white/90 font-mono bg-black/60 rounded-full px-2 py-1 w-fit backdrop-blur-md">
-                      <span>10:30 AM | 11:30 AM | 01:30 PM | 03:30 PM</span>
+                      <ShowtimeDisplay currentTime={time} />
                     </div>
                   </div>
                 </div>
