@@ -95,15 +95,15 @@ export default function MobileView() {
       center: [100.9304, 12.7663],
       zoom: 16.5,
       pitch: 45,
-      // Removed maxBounds temporarily to debug if it's causing the blank map
     });
 
-    // Force a resize after a short delay to ensure the container dimensions are fully computed
-    setTimeout(() => {
+    const resizeObserver = new ResizeObserver(() => {
       mapRef.current?.resize();
-    }, 100);
+    });
+    resizeObserver.observe(mapContainerRef.current);
 
     return () => {
+      resizeObserver.disconnect();
       mapRef.current?.remove();
       mapRef.current = null;
     };
@@ -159,7 +159,7 @@ export default function MobileView() {
       </div>
 
       {/* Map Layer */}
-      <div ref={mapContainerRef} className="absolute inset-0 z-0" />
+      <div ref={mapContainerRef} className="absolute inset-0 w-full h-full z-0" style={{ minHeight: '100dvh' }} />
 
       {/* Floating Action Buttons */}
       <div className="absolute top-28 right-4 flex flex-col gap-3 z-10">
