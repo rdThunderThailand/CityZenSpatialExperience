@@ -154,19 +154,15 @@ export default function KioskView() {
                 <h4 className="font-bold text-gray-800 tracking-wide italic text-sm">EXPLORE & GET INSPIRED</h4>
                 <p className="text-xs text-gray-500">ไฮไลต์ห้ามพลาดวันนี้</p>
               </div>
-              <div className="flex gap-4 flex-1">
-                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm">
-                  <img src="/images/thai_performance.png" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-3">
-                    <span className="text-white text-xs font-bold">Thai Cultural Performance</span>
-                  </div>
-                </div>
-                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm">
-                  <img src="/images/dinosaur_valley.png" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" style={{ animationDelay: "2s" }} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-3">
-                    <span className="text-white text-xs font-bold">Dinosaur Valley</span>
-                  </div>
-                </div>
+              <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm">
+                <video 
+                  src="https://www.nongnooch.world/assets/video-landing-CeXBl_Vg.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -348,16 +344,14 @@ export default function KioskView() {
                 <p className="text-sm text-gray-500">ชมวิดีโอแนะนำสถานที่ท่องเที่ยว</p>
               </div>
               <div className="flex-1 relative rounded-2xl overflow-hidden shadow-md">
-                <img src="/images/dinosaur_valley.png" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div className="absolute inset-0 flex items-center justify-center opacity-80">
-                  <div className="w-12 h-12 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/50 animate-pulse">
-                    <div className="w-0 h-0 border-t-8 border-t-transparent border-l-[12px] border-l-white border-b-8 border-b-transparent ml-1"></div>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <span className="text-white text-sm font-bold">Dinosaur Valley Tour</span>
-                </div>
+                <video 
+                  src="https://www.nongnooch.world/assets/video-landing-CeXBl_Vg.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
