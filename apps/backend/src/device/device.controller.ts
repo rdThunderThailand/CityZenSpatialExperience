@@ -3,7 +3,7 @@ import { DeviceService } from './device.service';
 
 @Controller('api')
 export class DeviceController {
-  constructor(private readonly deviceService: DeviceService) {}
+  constructor(private readonly deviceService: DeviceService) { }
 
   @Get('devices/:id')
   async getDevice(@Param('id') id: string) {
