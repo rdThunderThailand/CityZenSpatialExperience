@@ -1,14 +1,47 @@
 import { SmartCityImageMap } from '../../components/map/SmartCityImageMap';
-import { CloudSun, MapPin, Map, Smartphone } from 'lucide-react';
+import { CloudSun, MapPin, Map, Smartphone, Sun, Cloud, CloudRain, CloudLightning } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function KioskView() {
   const [time, setTime] = useState(new Date());
+  const [weather, setWeather] = useState({ temp: 32, desc: 'Partly Cloudy', icon: 'cloud-sun' });
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
+    
+    // Fetch real weather for Pattaya
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=12.9236&longitude=100.8825&current_weather=true')
+      .then(res => res.json())
+      .then(data => {
+        if (data.current_weather) {
+          const code = data.current_weather.weathercode;
+          let desc = 'Clear';
+          let icon = 'sun';
+          if (code === 1 || code === 2 || code === 3) { desc = 'Partly Cloudy'; icon = 'cloud-sun'; }
+          else if (code >= 45 && code <= 48) { desc = 'Foggy'; icon = 'cloud'; }
+          else if (code >= 51 && code <= 67) { desc = 'Rainy'; icon = 'cloud-rain'; }
+          else if (code >= 80 && code <= 82) { desc = 'Showers'; icon = 'cloud-rain'; }
+          else if (code >= 95) { desc = 'Thunderstorm'; icon = 'cloud-lightning'; }
+          
+          setWeather({
+            temp: Math.round(data.current_weather.temperature),
+            desc,
+            icon
+          });
+        }
+      })
+      .catch(console.error);
+
     return () => clearInterval(timer);
   }, []);
+
+  const WeatherIcon = () => {
+    if (weather.icon === 'sun') return <Sun className="text-yellow-500" size={32} />;
+    if (weather.icon === 'cloud') return <Cloud className="text-gray-400" size={32} />;
+    if (weather.icon === 'cloud-rain') return <CloudRain className="text-blue-400" size={32} />;
+    if (weather.icon === 'cloud-lightning') return <CloudLightning className="text-purple-500" size={32} />;
+    return <CloudSun className="text-orange-400" size={32} />;
+  };
 
   const BottomBar = () => (
     <div className="absolute bottom-0 left-0 right-0 bg-[#0a1e10] py-3 px-12 flex justify-between items-center text-white text-sm font-sans z-30 border-t border-[#1a4225]">
@@ -52,14 +85,14 @@ export default function KioskView() {
           <div className="bg-white/80 backdrop-blur-md rounded-2xl px-6 py-2 flex gap-6 shadow-sm border border-white">
             <div className="flex flex-col justify-center text-right">
               <div className="text-xl font-bold text-gray-800 leading-none">{time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-              <div className="text-xs text-gray-500 font-medium mt-1">24 May 2025</div>
+              <div className="text-xs text-gray-500 font-medium mt-1">{time.toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'})}</div>
               <div className="text-[10px] text-gray-500 mt-0.5">Open Daily : 08:00 A.M. - 06:00 P.M.</div>
             </div>
-            <div className="flex items-center gap-3 border-l border-gray-200 pl-6">
-              <CloudSun className="text-orange-400" size={32} />
+            <div className="flex items-center gap-3 border-l border-gray-200 pl-6 w-[120px]">
+              <WeatherIcon />
               <div className="flex flex-col justify-center">
-                <div className="text-xl font-bold text-gray-800 leading-none">28°C</div>
-                <div className="text-xs text-gray-500 font-medium mt-1">Partly Cloudy</div>
+                <div className="text-xl font-bold text-gray-800 leading-none">{weather.temp}°C</div>
+                <div className="text-xs text-gray-500 font-medium mt-1 whitespace-nowrap">{weather.desc}</div>
               </div>
             </div>
           </div>
@@ -212,14 +245,14 @@ export default function KioskView() {
             <div className="bg-white/80 backdrop-blur-md rounded-2xl px-6 py-3 flex gap-6 shadow-sm border border-white">
               <div className="flex flex-col justify-center text-right">
                 <div className="text-xl font-bold text-gray-800 leading-none">{time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-                <div className="text-xs text-gray-500 font-medium mt-1">24 May 2025</div>
+                <div className="text-xs text-gray-500 font-medium mt-1">{time.toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'})}</div>
                 <div className="text-[10px] text-gray-500 mt-0.5">Open Daily : 08:00 A.M. - 06:00 P.M.</div>
               </div>
-              <div className="flex items-center gap-3 border-l border-gray-200 pl-6">
-                <CloudSun className="text-orange-400" size={32} />
+              <div className="flex items-center gap-3 border-l border-gray-200 pl-6 w-[120px]">
+                <WeatherIcon />
                 <div className="flex flex-col justify-center">
-                  <div className="text-xl font-bold text-gray-800 leading-none">28°C</div>
-                  <div className="text-xs text-gray-500 font-medium mt-1">Partly Cloudy</div>
+                  <div className="text-xl font-bold text-gray-800 leading-none">{weather.temp}°C</div>
+                  <div className="text-xs text-gray-500 font-medium mt-1 whitespace-nowrap">{weather.desc}</div>
                 </div>
               </div>
             </div>
