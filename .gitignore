@@ -27,3 +27,7 @@ dist-ssr
 .env
 .env.*
 .antigravitycli/
+
+# Exclude from Tailwind v4 scanner to prevent Vite OOM
+apps/frontend/public/models/
+apps/frontend/public/images/
