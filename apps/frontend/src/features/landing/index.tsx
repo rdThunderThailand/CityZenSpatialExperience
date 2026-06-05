@@ -47,11 +47,17 @@ export default function LandingView() {
   return (
     <div className="relative w-screen h-screen overflow-hidden flex flex-col font-sans bg-[#050b14]">
       {/* BACKGROUND MAP */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <SmartCityImageMap kioskId="default" />
-        {/* Subtle top gradient for header readability */}
-        <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[#0a2342]/80 via-[#0a2342]/40 to-transparent"></div>
+      <div className="absolute inset-0 z-0">
+        <img src="/images/bg_nongnuch_vertical.jpg" className="w-full h-full object-cover" alt="Sky" />
       </div>
+      
+      {/* MAP WITH PROPER ASPECT RATIO */}
+      <div className="absolute top-[25%] left-[50%] -translate-x-1/2 w-[350vw] sm:w-[250vw] aspect-[16/10] z-0 pointer-events-none drop-shadow-2xl">
+        <SmartCityImageMap kioskId="default" className="!bg-transparent" />
+      </div>
+      
+      {/* Top Gradient for readability */}
+      <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[#0a2342]/90 via-[#0a2342]/50 to-transparent z-0 pointer-events-none"></div>
 
       {/* HEADER OVERLAY */}
       <header className="relative z-10 flex justify-between items-start px-10 pt-10">
