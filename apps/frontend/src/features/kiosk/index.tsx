@@ -120,7 +120,7 @@ export default function KioskView() {
         {/* MAIN CONTENT BOTTOM HALF */}
         <div className="flex-1 px-10 py-4 flex flex-col gap-4 relative z-10 overflow-hidden">
           {/* TOP ROW: HIGHLIGHTS */}
-          <div className="bg-[#14361e] rounded-3xl p-4 shadow-xl border border-white/10 flex-1 flex flex-col min-h-0">
+          <div className="bg-[#14361e]/70 backdrop-blur-xl rounded-3xl p-4 shadow-xl border border-white/10 flex-1 flex flex-col min-h-0">
             <div className="mb-2">
               <h3 className="text-white font-bold text-lg leading-none flex items-center gap-2">
                 <span className="text-yellow-400 text-xl">⭐</span> TODAY'S HIGHLIGHTS
@@ -147,7 +147,7 @@ export default function KioskView() {
 
           {/* BOTTOM ROW: SPLIT CARDS */}
           <div className="flex gap-4 flex-1 min-h-0">
-            <div className="w-1/3 bg-white rounded-3xl p-5 shadow-xl border-4 border-white flex flex-col justify-between">
+            <div className="w-1/3 bg-white/60 backdrop-blur-xl rounded-3xl p-5 shadow-xl border-2 border-white/40 flex flex-col justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-yellow-100 border-2 border-yellow-400 flex items-center justify-center">
                   <span className="text-xl">🚌</span>
@@ -167,7 +167,7 @@ export default function KioskView() {
               </div>
             </div>
 
-            <div className="flex-1 bg-white rounded-3xl p-5 shadow-xl border-4 border-white flex flex-col">
+            <div className="flex-1 bg-white/60 backdrop-blur-xl rounded-3xl p-5 shadow-xl border-2 border-white/40 flex flex-col">
               <div className="mb-2">
                 <h4 className="font-bold text-gray-800 tracking-wide italic text-sm">EXPLORE & GET INSPIRED</h4>
                 <p className="text-xs text-gray-500">ไฮไลต์ห้ามพลาดวันนี้</p>
@@ -191,7 +191,7 @@ export default function KioskView() {
         </div>
 
         {/* FOOTER QR SECTION */}
-        <div className="absolute bottom-10 left-0 right-0 h-36 bg-gradient-to-r from-[#173822] via-[#20492d] to-[#122e1a] flex items-center justify-between px-16 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] z-20 border-t border-white/10 rounded-t-3xl">
+        <div className="absolute bottom-10 left-0 right-0 h-36 bg-gradient-to-r from-[#173822]/80 via-[#20492d]/80 to-[#122e1a]/80 backdrop-blur-xl flex items-center justify-between px-16 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] z-20 border-t border-white/20 rounded-t-3xl">
           <div className="flex flex-col gap-2 flex-1">
             <h2 className="text-3xl text-[#e8f1e6] font-serif tracking-widest text-center pr-10 mb-2">SCAN TO CONTINUE YOUR JOURNEY</h2>
             <div className="flex justify-center gap-12 pr-10">
@@ -271,7 +271,7 @@ export default function KioskView() {
         <div className="flex-1 px-8 pb-4 flex gap-6 min-h-0">
           
           {/* LEFT COLUMN: HIGHLIGHTS */}
-          <div className="w-[25%] bg-[#14361e] rounded-3xl p-5 shadow-xl border border-white/10 flex flex-col h-full">
+          <div className="w-[25%] bg-[#14361e]/70 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-white/10 flex flex-col h-full">
             <div className="mb-4">
               <h3 className="text-white font-bold text-xl leading-none flex items-center gap-2 italic">
                 <span className="text-yellow-400 text-2xl">⭐</span> TODAY'S HIGHLIGHTS
@@ -302,7 +302,7 @@ export default function KioskView() {
               <SmartCityImageMap kioskId={id} />
             </div>
             
-            <div className="h-40 bg-gradient-to-r from-[#173822] via-[#20492d] to-[#122e1a] rounded-3xl shadow-xl flex items-center justify-between pl-10 pr-4 py-4 border border-white/10 relative overflow-hidden flex-shrink-0">
+            <div className="h-40 bg-gradient-to-r from-[#173822]/80 via-[#20492d]/80 to-[#122e1a]/80 backdrop-blur-xl rounded-3xl shadow-xl flex items-center justify-between pl-10 pr-4 py-4 border border-white/20 relative overflow-hidden flex-shrink-0">
               <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-green-500/20 blur-[100px] rounded-full pointer-events-none"></div>
               
               <div className="flex flex-col flex-1">
@@ -338,7 +338,7 @@ export default function KioskView() {
 
           {/* RIGHT COLUMN: SHUTTLE + INSPIRE */}
           <div className="w-[25%] flex flex-col gap-6">
-            <div className="bg-white rounded-3xl p-6 shadow-xl border-4 border-white flex flex-col flex-1 relative overflow-hidden group">
+            <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-6 shadow-xl border-2 border-white/40 flex flex-col flex-1 relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100/50 z-0"></div>
               <div className="relative z-10 flex items-center gap-4 mb-6">
                 <div className="w-14 h-14 rounded-full bg-yellow-100 border-[3px] border-yellow-400 flex items-center justify-center shadow-inner">
@@ -361,7 +361,7 @@ export default function KioskView() {
               <img src="/images/shuttle_bus.png" className="absolute bottom-2 -right-4 w-40 object-contain drop-shadow-2xl z-10 animate-drive" alt="Shuttle" />
             </div>
 
-            <div className="bg-white rounded-3xl p-6 shadow-xl border-4 border-white flex flex-col flex-1">
+            <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-6 shadow-xl border-2 border-white/40 flex flex-col flex-1">
               <div className="mb-4">
                 <h4 className="font-bold text-gray-900 tracking-wider text-lg">EXPLORE & GET INSPIRED</h4>
                 <p className="text-sm text-gray-500">ชมวิดีโอแนะนำสถานที่ท่องเที่ยว</p>

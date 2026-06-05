@@ -158,12 +158,12 @@ export default function MobileView() {
                 exit={{ opacity: 0, y: -20 }}
                 className="pt-14 px-5 flex gap-3 pointer-events-auto"
               >
-                <div className="flex-1 bg-white/95 backdrop-blur-md rounded-2xl shadow-lg flex items-center px-4 py-3.5 border border-white">
+                <div className="flex-1 bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg flex items-center px-4 py-3.5 border border-white/50">
                   <Search className="text-gray-400 w-5 h-5 mr-3" />
                   <input type="text" placeholder="Search places" className="w-full outline-none text-[15px] bg-transparent text-gray-800 font-medium placeholder:font-normal" />
                 </div>
                 <button 
-                  className="w-14 h-14 bg-white/95 backdrop-blur-md rounded-2xl shadow-lg flex items-center justify-center border border-white flex-shrink-0"
+                  className="w-14 h-14 bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg flex items-center justify-center border border-white/50 flex-shrink-0"
                   onClick={() => setViewState(viewState === 'CATEGORIES' && !selectedPlace ? 'HOME' : 'CATEGORIES')}
                 >
                   <Filter className="text-gray-700 w-5 h-5" />
@@ -186,14 +186,14 @@ export default function MobileView() {
                 className="px-5 pb-8 flex flex-col gap-4 pointer-events-auto"
               >
                 <div 
-                  className="bg-white/95 backdrop-blur-md rounded-2xl shadow-lg flex items-center px-5 py-4 border border-white cursor-pointer"
+                  className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg flex items-center px-5 py-4 border border-white/50 cursor-pointer"
                   onClick={() => setViewState('CATEGORIES')}
                 >
                   <Search className="text-gray-400 w-5 h-5 mr-3" />
                   <span className="text-gray-400 text-[15px]">Search places</span>
                 </div>
                 
-                <div className="bg-white/95 backdrop-blur-md rounded-[24px] shadow-lg p-2 flex justify-between overflow-x-auto hide-scrollbar border border-white">
+                <div className="bg-white/80 backdrop-blur-xl rounded-[24px] shadow-lg p-2 flex justify-between overflow-x-auto hide-scrollbar border border-white/50">
                   {CATEGORIES.slice(0,5).map((cat) => (
                     <button 
                       key={cat.id} 
@@ -221,7 +221,7 @@ export default function MobileView() {
                 dragConstraints={{ top: 0, bottom: 0 }}
                 dragElastic={0.2}
                 onDragEnd={handleDragEnd}
-                className="bg-white rounded-t-[32px] shadow-[0_-10px_40px_rgba(0,0,0,0.08)] p-6 pb-12 pointer-events-auto w-full touch-none"
+                className="bg-white/85 backdrop-blur-2xl border-t border-white/50 rounded-t-[32px] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] p-6 pb-12 pointer-events-auto w-full touch-none"
               >
                 <div className="w-10 h-1.5 bg-gray-200 rounded-full mx-auto mb-6 cursor-grab"></div>
                 <h3 className="font-bold text-gray-900 mb-6 px-2 text-lg">Categories</h3>
@@ -253,7 +253,7 @@ export default function MobileView() {
                 dragConstraints={{ top: 0, bottom: 0 }}
                 dragElastic={0.2}
                 onDragEnd={handleDragEnd}
-                className="bg-white rounded-t-[32px] shadow-[0_-10px_40px_rgba(0,0,0,0.08)] p-5 pb-8 relative pointer-events-auto touch-none"
+                className="bg-white/85 backdrop-blur-2xl border-t border-white/50 rounded-t-[32px] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] p-5 pb-8 relative pointer-events-auto touch-none"
               >
                 <div className="w-10 h-1.5 bg-gray-200 rounded-full mx-auto mb-5 cursor-grab"></div>
                 <button 
@@ -294,7 +294,7 @@ export default function MobileView() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="absolute inset-0 z-50 bg-white overflow-y-auto pb-28 font-sans"
+            className="absolute inset-0 z-50 bg-white/95 backdrop-blur-3xl overflow-y-auto pb-28 font-sans"
           >
             <div className="relative h-[38vh]">
               <img src={selectedPlace.image} className="w-full h-full object-cover" />

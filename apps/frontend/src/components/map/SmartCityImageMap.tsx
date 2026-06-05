@@ -7,14 +7,14 @@ export function SmartCityImageMap({ className, kioskId }: { className?: string, 
 
   // Example hotspots matching the original layout concept
   const hotspots = [
-    { id: 'convention', name: 'Convention Center', top: '45%', left: '35%' },
+    { id: 'convention', name: 'Convention Center', top: '35%', left: '35%' },
     { id: 'dinosaur1', name: 'Dinosaur Valley North', top: '25%', left: '60%' },
     { id: 'dinosaur2', name: 'Dinosaur Valley East', top: '45%', left: '75%' },
   ];
 
   // Map kiosk ID to map coordinates
   const kioskLocations: Record<string, { top: string, left: string, name: string }> = {
-    '1': { top: '85%', left: '25%', name: 'Entrance' },
+    '1': { top: '75%', left: '78%', name: 'Entrance' },
     '2': { top: '55%', left: '45%', name: 'Dome' },
     'default': { top: '55%', left: '45%', name: 'Dome' } // fallback
   };
@@ -26,21 +26,21 @@ export function SmartCityImageMap({ className, kioskId }: { className?: string, 
     let i = 0;
     // Set the first one initially
     setActiveInfo(hotspots[i].name);
-    
+
     const interval = setInterval(() => {
       i = (i + 1) % hotspots.length;
       setActiveInfo(hotspots[i].name);
     }, 5000);
-    
+
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className={cn("relative w-full h-full overflow-hidden bg-[#c3d1c5]", className)}>
       {/* Background Image without animation so pins stay aligned */}
-      <img 
-        src="/images/map_image.png" 
-        alt="Nongnooch Wonder World Map" 
+      <img
+        src="/images/map_image.png"
+        alt="Nongnooch Wonder World Map"
         className="absolute inset-0 w-full h-full object-cover"
       />
 
@@ -70,7 +70,7 @@ export function SmartCityImageMap({ className, kioskId }: { className?: string, 
             )}>
               <MapPin size={20} />
             </div>
-            
+
             {/* Label - Permanently visible since no touch screen */}
             <div className={cn(
               "absolute top-full mt-3 left-1/2 -translate-x-1/2 backdrop-blur-sm font-bold text-xs px-3 py-1.5 rounded-lg shadow-xl whitespace-nowrap border transition-colors duration-500",
@@ -81,9 +81,9 @@ export function SmartCityImageMap({ className, kioskId }: { className?: string, 
           </div>
         </div>
       ))}
-      
+
       {/* "You Are Here" Marker */}
-      <div 
+      <div
         className="absolute z-10 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-1000"
         style={{ top: currentLocation.top, left: currentLocation.left }}
       >
