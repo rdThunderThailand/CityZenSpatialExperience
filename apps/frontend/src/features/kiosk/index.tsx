@@ -390,21 +390,40 @@ export default function KioskView() {
               <img src="/images/shuttle_bus.png" className="absolute bottom-2 -right-4 w-40 object-contain drop-shadow-2xl z-10 animate-drive" alt="Shuttle" />
             </div>
 
-            <div className="bg-white/30 backdrop-blur-3xl rounded-3xl p-6 shadow-xl border-2 border-white/40 flex flex-col flex-1">
-              <div className="mb-4">
+            <div className="bg-white/30 backdrop-blur-3xl rounded-3xl p-6 shadow-xl border-2 border-white/40 flex flex-col flex-1 justify-center">
+              <div className="mb-4 shrink-0">
                 <h4 className="font-bold text-gray-900 tracking-wider text-lg">EXPLORE & GET INSPIRED</h4>
                 <p className="text-sm text-gray-500">ชมวิดีโอแนะนำสถานที่ท่องเที่ยว</p>
               </div>
-              <div className="flex-1 relative rounded-2xl overflow-hidden shadow-md">
-                <video 
-                  ref={videoRef3}
-                  src="https://www.nongnooch.world/assets/video-landing-CeXBl_Vg.mp4" 
-                  autoPlay 
-                  loop 
-                  muted={true}
-                  playsInline 
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+              <div className="flex gap-4 items-center justify-center mt-2">
+                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-square bg-gray-200">
+                  <video 
+                    ref={videoRef3}
+                    src="https://www.nongnooch.world/assets/video-landing-CeXBl_Vg.mp4" 
+                    autoPlay 
+                    loop 
+                    muted={true}
+                    playsInline 
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent">
+                    <span className="text-white text-[10px] font-bold">Nongnooch Garden</span>
+                  </div>
+                </div>
+                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-square bg-gray-200">
+                  <video 
+                    ref={videoRef4}
+                    src="https://videos.pexels.com/video-files/855029/855029-hd_1920_1080_30fps.mp4" 
+                    autoPlay 
+                    loop 
+                    muted={true}
+                    playsInline 
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent">
+                    <span className="text-white text-[10px] font-bold">Cultural Experience</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
