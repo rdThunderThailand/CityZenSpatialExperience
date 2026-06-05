@@ -173,7 +173,7 @@ export default function KioskView() {
         </div>
 
         {/* FOOTER QR SECTION */}
-        <div className="absolute bottom-10 left-0 right-0 h-36 bg-black/30 backdrop-blur-3xl flex items-center justify-between px-16 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] z-20 border-t border-white/20 rounded-t-3xl">
+        <div className="relative py-8 bg-black/30 backdrop-blur-3xl flex items-center justify-between px-16 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] z-20 border-t border-white/20 rounded-t-3xl mt-auto">
           <div className="flex flex-col gap-2 flex-1">
             <h2 className="text-3xl text-[#e8f1e6] font-serif tracking-widest text-center pr-10 mb-2">SCAN TO CONTINUE YOUR JOURNEY</h2>
             <div className="flex justify-center gap-12 pr-10">
@@ -283,7 +283,7 @@ export default function KioskView() {
               <SmartCityImageMap kioskId={id} />
             </div>
             
-            <div className="h-40 bg-black/30 backdrop-blur-3xl rounded-3xl shadow-xl flex items-center justify-between pl-10 pr-4 py-4 border border-white/20 relative overflow-hidden flex-shrink-0">
+            <div className="py-6 min-h-[10rem] bg-black/30 backdrop-blur-3xl rounded-3xl shadow-xl flex items-center justify-between pl-10 pr-4 border border-white/20 relative overflow-hidden flex-shrink-0">
               <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-green-500/20 blur-[100px] rounded-full pointer-events-none"></div>
               
               <div className="flex flex-col flex-1">
