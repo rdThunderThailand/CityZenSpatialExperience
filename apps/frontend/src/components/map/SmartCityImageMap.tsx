@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { cn } from '../../lib/utils';
 import { MapPin } from 'lucide-react';
 
-export function SmartCityImageMap({ className }: { className?: string }) {
+export function SmartCityImageMap({ className, kioskId }: { className?: string, kioskId?: string }) {
   const [activeInfo, setActiveInfo] = useState<string | null>(null);
 
   // Example hotspots matching the original layout concept
@@ -11,6 +11,15 @@ export function SmartCityImageMap({ className }: { className?: string }) {
     { id: 'dinosaur1', name: 'Dinosaur Valley North', top: '25%', left: '60%' },
     { id: 'dinosaur2', name: 'Dinosaur Valley East', top: '45%', left: '75%' },
   ];
+
+  // Map kiosk ID to map coordinates
+  const kioskLocations: Record<string, { top: string, left: string, name: string }> = {
+    '1': { top: '85%', left: '25%', name: 'Entrance' },
+    '2': { top: '55%', left: '45%', name: 'Dome' },
+    'default': { top: '55%', left: '45%', name: 'Dome' } // fallback
+  };
+
+  const currentLocation = kioskLocations[kioskId || 'default'] || kioskLocations['default'];
 
   // Auto-cycle through hotspots every 5 seconds since there is no touch interaction
   useEffect(() => {
@@ -75,12 +84,13 @@ export function SmartCityImageMap({ className }: { className?: string }) {
       
       {/* "You Are Here" Marker */}
       <div 
-        className="absolute z-10 transform -translate-x-1/2 -translate-y-1/2"
-        style={{ top: '55%', left: '45%' }}
+        className="absolute z-10 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-1000"
+        style={{ top: currentLocation.top, left: currentLocation.left }}
       >
         <div className="flex flex-col items-center animate-bounce">
-          <div className="bg-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-[0_5px_15px_rgba(0,0,0,0.5)] border-2 border-white mb-1 z-10 relative">
-            <span className="mr-1">📍</span> You Are Here
+          <div className="bg-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-[0_5px_15px_rgba(0,0,0,0.5)] border-2 border-white mb-1 z-10 relative flex items-center gap-1">
+            <span>📍</span> You Are Here
+            <span className="ml-1 opacity-70 border-l border-white/30 pl-1 font-normal text-[10px]">{currentLocation.name}</span>
           </div>
           <div className="w-4 h-4 bg-blue-600 rotate-45 transform -translate-y-3 shadow-sm border-r-2 border-b-2 border-white"></div>
         </div>

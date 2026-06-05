@@ -1,8 +1,10 @@
 import { SmartCityImageMap } from '../../components/map/SmartCityImageMap';
 import { CloudSun, MapPin, Map, Smartphone, Sun, Cloud, CloudRain, CloudLightning } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 export default function KioskView() {
+  const { id } = useParams();
   const [time, setTime] = useState(new Date());
   const [weather, setWeather] = useState({ temp: 32, desc: 'Partly Cloudy', icon: 'cloud-sun' });
 
@@ -75,8 +77,8 @@ export default function KioskView() {
         {/* HEADER */}
         <header className="flex justify-between items-center px-10 pt-6 pb-2">
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-yellow-400 p-2 overflow-hidden">
-              <img src="/images/nongnuchlogo.png" className="w-full h-full object-contain" alt="Logo" />
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-yellow-400 overflow-hidden">
+              <img src="/images/nongnuchlogo.png" className="w-full h-full object-cover" alt="Logo" />
             </div>
             <div className="flex flex-col">
               <h1 className="text-3xl font-serif text-[#3e6945] leading-none tracking-wide font-bold">NONGNOOCH</h1>
@@ -111,7 +113,7 @@ export default function KioskView() {
         {/* MAP CONTAINER */}
         <div className="px-10 py-2 h-[45vh] flex-shrink-0 relative z-10">
           <div className="w-full h-full rounded-3xl overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.3)] border-4 border-white/50 relative bg-[#050b14]">
-            <SmartCityImageMap />
+            <SmartCityImageMap kioskId={id} />
           </div>
         </div>
 
@@ -231,8 +233,8 @@ export default function KioskView() {
         {/* HEADER ROW */}
         <header className="flex justify-between items-start px-8 pt-6 pb-4 flex-shrink-0">
           <div className="flex items-center gap-4 w-[28%]">
-            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-yellow-400 p-2 flex-shrink-0 overflow-hidden">
-              <img src="/images/nongnuchlogo.png" className="w-full h-full object-contain" alt="Logo" />
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-yellow-400 flex-shrink-0 overflow-hidden">
+              <img src="/images/nongnuchlogo.png" className="w-full h-full object-cover" alt="Logo" />
             </div>
             <div className="flex flex-col">
               <h1 className="text-2xl font-serif text-[#3e6945] leading-none tracking-wide font-bold">NONGNOOCH</h1>
@@ -297,7 +299,7 @@ export default function KioskView() {
           {/* MAP CANVAS */}
           <div className="flex-1 flex flex-col gap-6 min-w-0">
             <div className="flex-1 rounded-3xl overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.4)] border-4 border-white/60 relative bg-[#e8f1e6]">
-              <SmartCityImageMap />
+              <SmartCityImageMap kioskId={id} />
             </div>
             
             <div className="h-40 bg-gradient-to-r from-[#173822] via-[#20492d] to-[#122e1a] rounded-3xl shadow-xl flex items-center justify-between pl-10 pr-4 py-4 border border-white/10 relative overflow-hidden flex-shrink-0">

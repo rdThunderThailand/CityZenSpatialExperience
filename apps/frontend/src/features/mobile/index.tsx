@@ -135,8 +135,8 @@ export default function MobileView() {
               >
                 <div className="flex justify-between items-center mb-8">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-white shadow-sm border border-green-100 rounded-lg flex items-center justify-center p-1 overflow-hidden">
-                      <img src="/images/nongnuchlogo.png" className="w-full h-full object-contain" alt="Logo" />
+                    <div className="w-10 h-10 bg-white shadow-sm border border-green-100 rounded-lg flex items-center justify-center overflow-hidden">
+                      <img src="/images/nongnuchlogo.png" className="w-full h-full object-cover" alt="Logo" />
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[#1a3821] font-bold text-sm leading-none tracking-wide">NONGNOOCH</span>
