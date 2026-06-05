@@ -44,13 +44,7 @@ export function SmartCityImageMap({ className, kioskId }: { className?: string, 
         className="absolute inset-0 w-full h-full object-cover"
       />
 
-      {/* Overlay UI for interaction */}
-      {activeInfo && (
-        <div className="absolute top-6 left-6 z-20 bg-black/80 border border-green-500/50 backdrop-blur-md p-4 rounded-xl max-w-xs animate-in fade-in slide-in-from-top-4">
-          <h3 className="text-green-400 font-mono font-bold text-lg mb-1">{activeInfo}</h3>
-          <p className="text-white/70 text-sm">กำลังแสดงข้อมูลอัตโนมัติ (Auto-Tour Mode)</p>
-        </div>
-      )}
+
 
       {/* Hotspots */}
       {hotspots.map((spot) => (
