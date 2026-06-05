@@ -51,8 +51,11 @@ export default function LandingView() {
         <img src="/images/bg_nongnuch_vertical.jpg" className="w-full h-full object-cover" alt="Sky" />
       </div>
       
-      {/* MAP WITH PROPER ASPECT RATIO */}
-      <div className="absolute top-[25%] left-[50%] -translate-x-1/2 w-[350vw] sm:w-[250vw] aspect-[16/10] z-0 pointer-events-none drop-shadow-2xl">
+      {/* MAP WITH PROPER ASPECT RATIO AND FADE */}
+      <div 
+        className="absolute bottom-0 left-[50%] -translate-x-1/2 w-[220vw] sm:w-[150vw] aspect-[16/10] z-0 pointer-events-none"
+        style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%)', maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%)' }}
+      >
         <SmartCityImageMap kioskId="default" className="!bg-transparent" />
       </div>
       
