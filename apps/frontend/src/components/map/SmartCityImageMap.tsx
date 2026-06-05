@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { cn } from '../../lib/utils';
 import { MapPin } from 'lucide-react';
 
@@ -12,50 +12,78 @@ export function SmartCityImageMap({ className }: { className?: string }) {
     { id: 'dinosaur2', name: 'Dinosaur Valley East', top: '45%', left: '75%' },
   ];
 
+  // Auto-cycle through hotspots every 5 seconds since there is no touch interaction
+  useEffect(() => {
+    let i = 0;
+    // Set the first one initially
+    setActiveInfo(hotspots[i].name);
+    
+    const interval = setInterval(() => {
+      i = (i + 1) % hotspots.length;
+      setActiveInfo(hotspots[i].name);
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className={cn("relative w-full h-full overflow-hidden bg-[#c3d1c5]", className)}>
-      {/* Background Image */}
+      <style>{`
+        @keyframes slowPan {
+          0% { transform: scale(1.1) translate(0, 0); }
+          25% { transform: scale(1.15) translate(-2%, 2%); }
+          50% { transform: scale(1.1) translate(-4%, -1%); }
+          75% { transform: scale(1.15) translate(1%, -3%); }
+          100% { transform: scale(1.1) translate(0, 0); }
+        }
+        .animate-slow-pan {
+          animation: slowPan 40s ease-in-out infinite;
+        }
+      `}</style>
+      
+      {/* Background Image with Auto Animation */}
       <img 
         src="/images/map_image.png" 
         alt="Nongnooch Wonder World Map" 
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover animate-slow-pan transform-origin-center"
       />
 
       {/* Overlay UI for interaction */}
       {activeInfo && (
         <div className="absolute top-6 left-6 z-20 bg-black/80 border border-green-500/50 backdrop-blur-md p-4 rounded-xl max-w-xs animate-in fade-in slide-in-from-top-4">
           <h3 className="text-green-400 font-mono font-bold text-lg mb-1">{activeInfo}</h3>
-          <p className="text-white/70 text-sm">Interactive smart city node selected. Explore more details here.</p>
-          <button 
-            onClick={() => setActiveInfo(null)}
-            className="mt-3 text-xs bg-green-500/20 text-green-400 px-3 py-1.5 rounded hover:bg-green-500/40 transition-colors"
-          >
-            Close
-          </button>
+          <p className="text-white/70 text-sm">กำลังแสดงข้อมูลอัตโนมัติ (Auto-Tour Mode)</p>
         </div>
       )}
 
       {/* Hotspots */}
       {hotspots.map((spot) => (
-        <button
+        <div
           key={spot.id}
-          className="absolute z-10 group transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute z-10 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-1000"
           style={{ top: spot.top, left: spot.left }}
-          onClick={() => setActiveInfo(spot.name)}
         >
           {/* Pin Animation */}
           <div className="relative flex items-center justify-center">
-            <div className="absolute w-12 h-12 bg-yellow-400/40 rounded-full animate-ping"></div>
-            <div className="relative bg-white text-green-700 p-2 rounded-full shadow-[0_5px_15px_rgba(0,0,0,0.5)] border-2 border-yellow-400 group-hover:bg-yellow-400 group-hover:text-white transition-colors">
+            {activeInfo === spot.name && (
+              <div className="absolute w-16 h-16 bg-yellow-400/50 rounded-full animate-ping"></div>
+            )}
+            <div className={cn(
+              "relative p-2 rounded-full shadow-[0_5px_15px_rgba(0,0,0,0.5)] border-2 transition-all duration-500",
+              activeInfo === spot.name ? "bg-yellow-400 text-white border-white scale-125" : "bg-white text-green-700 border-yellow-400"
+            )}>
               <MapPin size={20} />
             </div>
             
-            {/* Tooltip */}
-            <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-sm text-green-900 font-bold text-xs px-3 py-1.5 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-green-100">
+            {/* Label - Permanently visible since no touch screen */}
+            <div className={cn(
+              "absolute top-full mt-3 left-1/2 -translate-x-1/2 backdrop-blur-sm font-bold text-xs px-3 py-1.5 rounded-lg shadow-xl whitespace-nowrap border transition-colors duration-500",
+              activeInfo === spot.name ? "bg-yellow-400 text-green-900 border-white scale-110" : "bg-white/95 text-green-900 border-green-100"
+            )}>
               {spot.name}
             </div>
           </div>
-        </button>
+        </div>
       ))}
       
       {/* "You Are Here" Marker */}
