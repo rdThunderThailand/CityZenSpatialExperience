@@ -7,19 +7,36 @@ export default function KioskView() {
   const { id } = useParams();
   const videoRef1 = useRef<HTMLVideoElement>(null);
   const videoRef2 = useRef<HTMLVideoElement>(null);
+  const videoRef3 = useRef<HTMLVideoElement>(null);
+  const videoRef4 = useRef<HTMLVideoElement>(null);
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
     // Attempt to force play videos if autoplay is blocked by browser policies
     const playVideo = (ref: React.RefObject<HTMLVideoElement>) => {
-      if (ref.current) {
+      if (ref?.current) {
         ref.current.defaultMuted = true;
         ref.current.muted = true;
         ref.current.play().catch(e => console.log('Video play failed:', e));
       }
     };
-    playVideo(videoRef1);
-    playVideo(videoRef2);
+    
+    const playAll = () => {
+      playVideo(videoRef1);
+      playVideo(videoRef2);
+      playVideo(videoRef3);
+      playVideo(videoRef4);
+    };
+
+    playAll();
+
+    // In case strict autoplay blocks it completely, play on first user interaction
+    document.addEventListener('touchstart', playAll, { once: true });
+    document.addEventListener('click', playAll, { once: true });
+    return () => {
+      document.removeEventListener('touchstart', playAll);
+      document.removeEventListener('click', playAll);
+    };
   }, []);
   const [weather, setWeather] = useState({ temp: 32, desc: 'Partly Cloudy', icon: 'cloud-sun' });
 
@@ -164,21 +181,40 @@ export default function KioskView() {
               </div>
             </div>
 
-            <div className="flex-1 bg-white/30 backdrop-blur-3xl rounded-3xl p-5 shadow-xl border-2 border-white/40 flex flex-col">
-              <div className="mb-2">
+            <div className="flex-1 bg-white/30 backdrop-blur-3xl rounded-3xl p-5 shadow-xl border-2 border-white/40 flex flex-col justify-center">
+              <div className="mb-2 shrink-0">
                 <h4 className="font-bold text-gray-800 tracking-wide italic text-sm">EXPLORE & GET INSPIRED</h4>
                 <p className="text-xs text-gray-500">ไฮไลต์ห้ามพลาดวันนี้</p>
               </div>
-              <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm">
-                <video 
-                  ref={videoRef1}
-                  src="https://www.nongnooch.world/assets/video-landing-CeXBl_Vg.mp4" 
-                  autoPlay 
-                  loop 
-                  muted={true}
-                  playsInline 
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+              <div className="flex gap-4 items-center justify-center mt-2">
+                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-square bg-gray-200">
+                  <video 
+                    ref={videoRef1}
+                    src="https://www.nongnooch.world/assets/video-landing-CeXBl_Vg.mp4" 
+                    autoPlay 
+                    loop 
+                    muted={true}
+                    playsInline 
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent">
+                    <span className="text-white text-[10px] font-bold">Nongnooch Garden</span>
+                  </div>
+                </div>
+                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-square bg-gray-200">
+                  <video 
+                    ref={videoRef2}
+                    src="https://videos.pexels.com/video-files/855029/855029-hd_1920_1080_30fps.mp4" 
+                    autoPlay 
+                    loop 
+                    muted={true}
+                    playsInline 
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent">
+                    <span className="text-white text-[10px] font-bold">Cultural Experience</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -361,7 +397,7 @@ export default function KioskView() {
               </div>
               <div className="flex-1 relative rounded-2xl overflow-hidden shadow-md">
                 <video 
-                  ref={videoRef2}
+                  ref={videoRef3}
                   src="https://www.nongnooch.world/assets/video-landing-CeXBl_Vg.mp4" 
                   autoPlay 
                   loop 
