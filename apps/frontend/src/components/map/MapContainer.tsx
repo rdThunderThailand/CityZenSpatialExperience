@@ -5,7 +5,7 @@ import { useMapStore } from '../../store/useMapStore';
 import { useShuttleStore } from '../../store/useShuttleStore';
 import { cn } from '../../lib/utils';
 
-mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN || 'pk.eyJ1IjoibW9jay11c2VyIiwiYSI6ImNtbW9jay10b2tlbiJ9.mock';
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
 interface MapContainerProps {
   className?: string;

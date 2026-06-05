@@ -4,7 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { Search, MapPin, Heart, ChevronLeft, Info, Camera, Clock, X, CarFront, Coffee, Droplets } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
-mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN || 'pk.eyJ1IjoibW9jay11c2VyIiwiYSI6ImNtbW9jay10b2tlbiJ9.mock';
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
 const NONGNOOCH_BOUNDS: [mapboxgl.LngLatLike, mapboxgl.LngLatLike] = [
   [100.9150, 12.7550], // SW coordinates
