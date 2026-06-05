@@ -43,7 +43,7 @@ export default function MobileView() {
 
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/satellite-streets-v12',
+      style: 'mapbox://styles/mapbox/standard',
       center: [100.9304, 12.7663],
       zoom: 16.5,
       pitch: 45,
@@ -123,7 +123,7 @@ export default function MobileView() {
       <div className="absolute inset-0 z-10 pointer-events-none flex flex-col justify-between">
         
         {/* TOP HEADER */}
-        <div className="pointer-events-auto">
+        <div className="pointer-events-none">
           <AnimatePresence mode="wait">
             {viewState === 'HOME' ? (
               <motion.div 
@@ -131,7 +131,7 @@ export default function MobileView() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="pt-14 px-6 pb-8 bg-gradient-to-b from-white/95 via-white/70 to-transparent"
+                className="pt-14 px-6 pb-8 bg-gradient-to-b from-white/95 via-white/70 to-transparent pointer-events-auto"
               >
                 <div className="flex justify-between items-center mb-8">
                   <div className="flex items-center gap-3">
@@ -156,7 +156,7 @@ export default function MobileView() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="pt-14 px-5 flex gap-3"
+                className="pt-14 px-5 flex gap-3 pointer-events-auto"
               >
                 <div className="flex-1 bg-white/95 backdrop-blur-md rounded-2xl shadow-lg flex items-center px-4 py-3.5 border border-white">
                   <Search className="text-gray-400 w-5 h-5 mr-3" />
@@ -174,7 +174,7 @@ export default function MobileView() {
         </div>
 
         {/* BOTTOM SECTION */}
-        <div className="pointer-events-auto flex flex-col justify-end h-full">
+        <div className="pointer-events-none flex flex-col justify-end h-full">
           
           <AnimatePresence>
             {/* HOME Bottom Floating Items */}
@@ -183,7 +183,7 @@ export default function MobileView() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 50 }}
-                className="px-5 pb-8 flex flex-col gap-4"
+                className="px-5 pb-8 flex flex-col gap-4 pointer-events-auto"
               >
                 <div 
                   className="bg-white/95 backdrop-blur-md rounded-2xl shadow-lg flex items-center px-5 py-4 border border-white cursor-pointer"
