@@ -6,9 +6,7 @@ import { useParams } from 'react-router-dom';
 export default function KioskView() {
   const { id } = useParams();
   const videoRef1 = useRef<HTMLVideoElement>(null);
-  const videoRef2 = useRef<HTMLVideoElement>(null);
   const videoRef3 = useRef<HTMLVideoElement>(null);
-  const videoRef4 = useRef<HTMLVideoElement>(null);
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -23,9 +21,7 @@ export default function KioskView() {
     
     const playAll = () => {
       playVideo(videoRef1);
-      playVideo(videoRef2);
       playVideo(videoRef3);
-      playVideo(videoRef4);
     };
 
     playAll();
@@ -201,15 +197,11 @@ export default function KioskView() {
                     <span className="text-white text-[10px] font-bold">Thai Cultural Performance</span>
                   </div>
                 </div>
-                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-video bg-gray-200">
-                  <video 
-                    ref={videoRef2}
-                    src="https://videos.pexels.com/video-files/855029/855029-hd_1920_1080_30fps.mp4" 
-                    autoPlay 
-                    loop 
-                    muted={true}
-                    playsInline 
-                    className="absolute inset-0 w-full h-full object-cover"
+                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-video bg-gray-200 group">
+                  <img 
+                    src="/images/thai_performance.png" 
+                    alt="Thai Cultural Performance" 
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent">
                     <span className="text-white text-[10px] font-bold">Dinosaur Valley</span>
@@ -410,18 +402,14 @@ export default function KioskView() {
                     <span className="text-white text-[10px] font-bold">Nongnooch Garden</span>
                   </div>
                 </div>
-                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-square bg-gray-200">
-                  <video 
-                    ref={videoRef4}
-                    src="https://videos.pexels.com/video-files/855029/855029-hd_1920_1080_30fps.mp4" 
-                    autoPlay 
-                    loop 
-                    muted={true}
-                    playsInline 
-                    className="absolute inset-0 w-full h-full object-cover"
+                <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm aspect-video bg-gray-200 group">
+                  <img 
+                    src="/images/thai_performance.png" 
+                    alt="Thai Cultural Performance" 
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent">
-                    <span className="text-white text-[10px] font-bold">Cultural Experience</span>
+                    <span className="text-white text-[10px] font-bold">Dinosaur Valley</span>
                   </div>
                 </div>
               </div>
