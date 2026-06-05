@@ -28,24 +28,11 @@ export function SmartCityImageMap({ className }: { className?: string }) {
 
   return (
     <div className={cn("relative w-full h-full overflow-hidden bg-[#c3d1c5]", className)}>
-      <style>{`
-        @keyframes slowPan {
-          0% { transform: scale(1.1) translate(0, 0); }
-          25% { transform: scale(1.15) translate(-2%, 2%); }
-          50% { transform: scale(1.1) translate(-4%, -1%); }
-          75% { transform: scale(1.15) translate(1%, -3%); }
-          100% { transform: scale(1.1) translate(0, 0); }
-        }
-        .animate-slow-pan {
-          animation: slowPan 40s ease-in-out infinite;
-        }
-      `}</style>
-      
-      {/* Background Image with Auto Animation */}
+      {/* Background Image without animation so pins stay aligned */}
       <img 
         src="/images/map_image.png" 
         alt="Nongnooch Wonder World Map" 
-        className="absolute inset-0 w-full h-full object-cover animate-slow-pan transform-origin-center"
+        className="absolute inset-0 w-full h-full object-cover"
       />
 
       {/* Overlay UI for interaction */}

@@ -63,3 +63,33 @@ body {
     transform: translateY(10px) scale(0.98);
   }
 }
+
+/* Kiosk Auto Animations */
+@keyframes slow-zoom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.animate-slow-zoom {
+  animation: slow-zoom 20s ease-in-out infinite;
+}
+
+@keyframes drive {
+  0%, 100% { transform: translateX(0) scaleX(1); }
+  45% { transform: translateX(-15px) scaleX(1); }
+  50% { transform: translateX(-15px) scaleX(1); }
+  95% { transform: translateX(5px) scaleX(1); }
+}
+
+.animate-drive {
+  animation: drive 6s ease-in-out infinite;
+}
+
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.animate-float-subtle {
+  animation: float-subtle 4s ease-in-out infinite;
+}

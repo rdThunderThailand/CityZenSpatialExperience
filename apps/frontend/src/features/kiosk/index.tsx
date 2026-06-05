@@ -92,8 +92,8 @@ export default function KioskView() {
             
             <div className="grid grid-cols-3 gap-4 flex-1">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="relative rounded-xl overflow-hidden group h-full">
-                  <img src="/images/thai_performance.png" alt="Performance" className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-110" />
+                <div key={i} className="relative rounded-xl overflow-hidden group h-full animate-float-subtle" style={{ animationDelay: `${i * 0.5}s` }}>
+                  <img src="/images/thai_performance.png" alt="Performance" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" style={{ animationDelay: `${i}s` }} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                   <div className="absolute bottom-3 left-3 right-3">
                     <h4 className="text-white font-bold text-sm leading-tight">Thai Cultural Performance</h4>
@@ -125,7 +125,7 @@ export default function KioskView() {
                   <div className="text-4xl font-black text-gray-900 tracking-tighter">03<span className="text-lg font-bold ml-1">min</span></div>
                   <p className="text-xs text-gray-500 font-medium">To Sky Garden</p>
                 </div>
-                <img src="/images/shuttle_bus.png" className="w-28 h-20 object-contain drop-shadow-xl translate-x-2" alt="Shuttle" />
+                <img src="/images/shuttle_bus.png" className="w-28 h-20 object-contain drop-shadow-xl animate-drive" alt="Shuttle" />
               </div>
             </div>
 
@@ -136,13 +136,13 @@ export default function KioskView() {
               </div>
               <div className="flex gap-4 flex-1">
                 <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm">
-                  <img src="/images/thai_performance.png" className="absolute inset-0 w-full h-full object-cover" />
+                  <img src="/images/thai_performance.png" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-3">
                     <span className="text-white text-xs font-bold">Thai Cultural Performance</span>
                   </div>
                 </div>
                 <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm">
-                  <img src="/images/dinosaur_valley.png" className="absolute inset-0 w-full h-full object-cover" />
+                  <img src="/images/dinosaur_valley.png" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" style={{ animationDelay: "2s" }} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-3">
                     <span className="text-white text-xs font-bold">Dinosaur Valley</span>
                   </div>
@@ -240,8 +240,8 @@ export default function KioskView() {
             
             <div className="flex flex-col gap-4 flex-1 overflow-y-auto pr-2 custom-scrollbar">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="relative rounded-2xl overflow-hidden group flex-1 min-h-0 flex-shrink-0 border-2 border-transparent hover:border-yellow-400 transition-colors cursor-pointer shadow-lg">
-                  <img src="/images/thai_performance.png" alt="Performance" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <div key={i} className="relative rounded-2xl overflow-hidden group flex-1 min-h-0 flex-shrink-0 border-2 border-transparent shadow-lg animate-float-subtle" style={{ animationDelay: `${i * 0.4}s` }}>
+                  <img src="/images/thai_performance.png" alt="Performance" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" style={{ animationDelay: `${i * 1.5}s` }} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                   <div className="absolute bottom-3 left-3 right-3">
                     <h4 className="text-white font-bold text-sm leading-tight mb-0.5">Thai Cultural Performance</h4>
@@ -317,7 +317,7 @@ export default function KioskView() {
                 <p className="text-sm text-gray-600 font-medium mt-2">To Sky Garden</p>
               </div>
               
-              <img src="/images/shuttle_bus.png" className="absolute bottom-2 -right-4 w-40 object-contain drop-shadow-2xl z-10 transition-transform duration-500 group-hover:-translate-x-2" alt="Shuttle" />
+              <img src="/images/shuttle_bus.png" className="absolute bottom-2 -right-4 w-40 object-contain drop-shadow-2xl z-10 animate-drive" alt="Shuttle" />
             </div>
 
             <div className="bg-white rounded-3xl p-6 shadow-xl border-4 border-white flex flex-col flex-1">
@@ -325,11 +325,11 @@ export default function KioskView() {
                 <h4 className="font-bold text-gray-900 tracking-wider text-lg">EXPLORE & GET INSPIRED</h4>
                 <p className="text-sm text-gray-500">ชมวิดีโอแนะนำสถานที่ท่องเที่ยว</p>
               </div>
-              <div className="flex-1 relative rounded-2xl overflow-hidden shadow-md group cursor-pointer">
-                <img src="/images/dinosaur_valley.png" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="flex-1 relative rounded-2xl overflow-hidden shadow-md">
+                <img src="/images/dinosaur_valley.png" className="absolute inset-0 w-full h-full object-cover animate-slow-zoom" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-12 h-12 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/50">
+                <div className="absolute inset-0 flex items-center justify-center opacity-80">
+                  <div className="w-12 h-12 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/50 animate-pulse">
                     <div className="w-0 h-0 border-t-8 border-t-transparent border-l-[12px] border-l-white border-b-8 border-b-transparent ml-1"></div>
                   </div>
                 </div>
