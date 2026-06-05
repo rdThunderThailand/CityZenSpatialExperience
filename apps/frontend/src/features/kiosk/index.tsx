@@ -68,12 +68,15 @@ export default function KioskView() {
       {/* =========================================
           PORTRAIT LAYOUT (Vertical Screen)
       ========================================= */}
-      <div className="landscape:hidden portrait:flex relative w-screen h-screen overflow-hidden flex-col bg-gradient-to-b from-[#e8f1e6] via-[#d4e4d4] to-[#144222] font-sans pb-48">
+      <div 
+        className="landscape:hidden portrait:flex relative w-screen h-screen overflow-hidden flex-col bg-[#e8f1e6] font-sans pb-48"
+        style={{ backgroundImage: "url('/images/bg_nongnuch_vertical.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+      >
         {/* HEADER */}
         <header className="flex justify-between items-center px-10 pt-6 pb-2">
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 bg-red-600 text-yellow-400 font-serif italic font-bold text-4xl rounded-full flex items-center justify-center shadow-md border-2 border-yellow-400">
-              n
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-yellow-400 p-2 overflow-hidden">
+              <img src="/images/nongnuchlogo.png" className="w-full h-full object-contain" alt="Logo" />
             </div>
             <div className="flex flex-col">
               <h1 className="text-3xl font-serif text-[#3e6945] leading-none tracking-wide font-bold">NONGNOOCH</h1>
@@ -220,13 +223,16 @@ export default function KioskView() {
       {/* =========================================
           LANDSCAPE LAYOUT (Horizontal Screen)
       ========================================= */}
-      <div className="portrait:hidden landscape:flex relative w-screen h-screen overflow-hidden flex-col bg-gradient-to-b from-[#e8f1e6] via-[#d4e4d4] to-[#144222] font-sans pb-10">
+      <div 
+        className="portrait:hidden landscape:flex relative w-screen h-screen overflow-hidden flex-col bg-[#e8f1e6] font-sans pb-10"
+        style={{ backgroundImage: "url('/images/bg_nongnuch_horizon.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+      >
         
         {/* HEADER ROW */}
         <header className="flex justify-between items-start px-8 pt-6 pb-4 flex-shrink-0">
           <div className="flex items-center gap-4 w-[28%]">
-            <div className="w-16 h-16 bg-red-600 text-yellow-400 font-serif italic font-bold text-4xl rounded-full flex items-center justify-center shadow-md border-2 border-yellow-400 flex-shrink-0">
-              n
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-yellow-400 p-2 flex-shrink-0 overflow-hidden">
+              <img src="/images/nongnuchlogo.png" className="w-full h-full object-contain" alt="Logo" />
             </div>
             <div className="flex flex-col">
               <h1 className="text-2xl font-serif text-[#3e6945] leading-none tracking-wide font-bold">NONGNOOCH</h1>
